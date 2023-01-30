@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signUpStyles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Wander | Forgot Password</title>
+
+</head>
+<body>
+   <div class="box">
+    <div class="container">
+
+        <div class="top">
+            <span></span>
+            <header>Forgot Password</header>
+        </div>
+
+        <div class="input-field">
+            <input type="text" class="input" placeholder="Enter a valid Email" id="">
+            <i class='bx bx-user' ></i>
+        </div>
+
+        <div class="input-field">
+            <input type="submit" class="submit" value="Submit" id="">
+        </div>
+
+        <div class="two-col">
+            <div class="one">
+                <label><a href="login.html">Back</a></label>
+            </div>
+            <div class="two">
+                <label><a href="#">Forgot password?</a></label>
+            </div>
+        </div>
+    </div>
+</div>  
+<script>
+    document.querySelector(".submit").addEventListener("click", function() {
+        document.querySelector(".input-field").innerHTML = "<p style='color: white; text-align: center;'>Check your inbox for an email</p>";
+        document.querySelector(".submit").style.display = "none";
+        document.querySelector(".two-col").style.display = "none";
+    });
+    
+</script>
+</body>
+</html>

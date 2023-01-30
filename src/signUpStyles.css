@@ -83,7 +83,11 @@ i{
 }
 .one{
     display: flex;
+    align-items: center;
+    font-size: small;
+    text-align: center;
 }
+
 label a{
     text-decoration: none;
     color: #fff;
