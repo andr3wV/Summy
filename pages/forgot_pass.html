@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signUpStyles.css">
+    <link rel="stylesheet" href="../css/signUpStyles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <title>Wander | Forgot Password</title>
@@ -24,22 +24,17 @@
             <i class='bx bx-user' ></i>
         </div>
 
-        <div class="input-field">
-            <button type="submit" class="submit" value="Submit" id="">
+        <div class="input-field" style="margin-bottom: 10px;">
+            <input type="submit" class="submit" value="Reset" id="">
         </div>
 
-        <div class="two-col">
-            <div class="one">
-                <label><a href="login.html">Back</a></label>
-            </div>
-            <div class="two">
-                <label><a href="#">Forgot password?</a></label>
-            </div>
+        <div class="input-field">
+            <input type="submit" class="submit" value="Back" onclick="window.location.href='login.html'">
         </div>
     </div>
 </div>  
 <script>
 </script>
-<script src="firebase.js"></script>
+<script src="../js/firebase.js"></script>
 </body>
 </html>
