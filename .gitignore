@@ -12,3 +12,6 @@ frontend/assets/travel-video.mp4
 
 #Bing API cookies
 cookies.json
+
+#VSCode ports
+.vscode/settings.json
