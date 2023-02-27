@@ -4,8 +4,8 @@ names.txt
 .DS_Store
 
 #Homepage Video - too large for github
-frontend/assets/travel-video-2.mp4
-frontend/assets/travel-video.mp4
+view/assets/travel-video-2.mp4
+view/assets/travel-video.mp4
 
 #API Keys
 .env
