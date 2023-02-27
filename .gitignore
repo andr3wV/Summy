@@ -2,3 +2,9 @@ README.txt
 gameplan.txt
 names.txt
 .DS_Store
+
+#API Keys
+.env
+
+#Bing API cookies
+cookies.json
