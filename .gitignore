@@ -6,6 +6,7 @@ names.txt
 #Homepage Video - too large for github
 view/assets/travel-video-2.mp4
 view/assets/travel-video.mp4
+view/assets/travel-video-3.mp4
 
 #API Keys
 .env
