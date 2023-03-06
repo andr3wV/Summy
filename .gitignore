@@ -2,6 +2,7 @@ README.txt
 gameplan.txt
 names.txt
 .DS_Store
+node_modules/
 
 #Homepage Video - too large for github
 view/assets/travel-video-2.mp4
