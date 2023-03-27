@@ -15,7 +15,6 @@
     <link type="text/css" rel="stylesheet" href="css/owl.theme.default.min.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
     <nav>
         <div class="container">
@@ -41,6 +40,8 @@
         </div>
     </nav>
 
+    <!--  Typewriter Text  -->
+
     <header>
         <div class="container">
             <div class="header-info-par">
@@ -56,8 +57,25 @@
             </div>
         </div>
     </header>
+
+    <!--  Search Container  -->
+
+    <div class="search-container">
+        <div class="search-box">
+          <input type="text" placeholder="  Enter Origin City" id="search-box">
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
+    <script>
+        const searchBox = document.getElementById('search-box');
+        searchBox.addEventListener('keypress', function(event) {
+          if (event.keyCode === 13) {
+            window.location.href = "pages/survey.html";
+          }
+        });
+    </script>
+      
     <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
     <script src="js/extrenaljq.js"></script>
 </body>
 
