@@ -3,6 +3,7 @@ import './style.css';
 import 'survey-core/modern.min.css';
 import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
+import {useCallback } from "react";
 
 const json = {
   title: 'Wander Survey',
@@ -316,5 +317,17 @@ const json = {
 export default function App() {
   const model = new Model(json);
 
-  return <Survey model={model}></Survey>;
+  // Define the callback function to be called when the survey is completed
+  const onComplete = useCallback((survey) => {
+    const data = survey.data;
+    const jsonData = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = '~/Dev/Active/wander/model/data/surveyData.json';
+    link.click();
+  }, []);
+
+  return <Survey model={model} onComplete={onComplete}></Survey>;
 }
