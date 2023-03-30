@@ -4,6 +4,9 @@ names.txt
 .DS_Store
 node_modules/
 
+#API responses
+model/data/
+
 #Homepage Video - too large for github
 view/assets/travel-video-2.mp4
 view/assets/travel-video.mp4
