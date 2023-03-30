@@ -3,6 +3,7 @@ const jf = require("JotForm");
 const fs = require('fs');
 require('dotenv').config(); // loads .env file into process.env
 
+// form id for the survey
 var formID = "230857405416153"; 
 
 jf.options({
@@ -15,10 +16,9 @@ jf.getFormSubmissions(formID)
     /**
      successful response including submissions of form with given id. Top submission is the newest.
      */
-    //console.log(response);
 
-    // select newest response only
-    response = response[0];
+    // select newest response answers only
+    response = response[0]["answers"];
 
     // save response to file jotform.json
     fs.writeFileSync('./data/jotform.json', JSON.stringify(response, null, 3));
