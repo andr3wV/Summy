@@ -10,41 +10,7 @@ const fs = require('fs');
 
 //Global Variables
 searchResponse = null;
-
-// builds the API url with a base string and a map of parameters
-function buildUrl(base, query) {
-    var url = base;
-    var first = true;
-    for (var key in query) {
-        if (query[key] != null) {
-            url += '&';
-            url += key + '=' + query[key];
-        }
-    }
-    return url;
-}
-
-//make api Get request to the url using axios
-function getFlights(base, query) {
-    console.log("Making API Request...");
-    axios.get(buildUrl(baseURL, query), {
-        headers: {
-            'apikey': process.env.TEQUILA_API_KEY // API key from .env file
-        }
-    })
-        .then(response => {
-            searchResponse = response.data;
-            console.log('Response Saved to response.json!');
-            fs.writeFileSync('response.json', JSON.stringify(response.data, null, 3));
-        })
-        .catch(error => {
-            console.log(error);
-            console.log("You suck!");
-        });
-}
-
 var baseURL =  "https://api.tequila.kiwi.com/v2/search?";
-
 //Link to full documenation of param queries: https://tequila.kiwi.com/portal/docs/tequila_api/search_api
 var query = {
     'fly_from': 'LAX', // TODO: set to survey
@@ -79,6 +45,38 @@ var query = {
     'max_stopovers': null,
     'selected_airlines_exclude': null,
     'limit': 10
+}
+
+// builds the API url with a base string and a map of parameters
+function buildUrl(base, query) {
+    var url = base;
+    var first = true;
+    for (var key in query) {
+        if (query[key] != null) {
+            url += '&';
+            url += key + '=' + query[key];
+        }
+    }
+    return url;
+}
+
+//make api Get request to the url using axios
+function getFlights(query) {
+    console.log("Making API Request...");
+    axios.get(buildUrl(baseURL, query), {
+        headers: {
+            'apikey': process.env.TEQUILA_API_KEY // API key from .env file
+        }
+    })
+        .then(response => {
+            searchResponse = response.data;
+            console.log('Response Saved to response.json!');
+            fs.writeFileSync('data/getResponse.json', JSON.stringify(response.data, null, 3));
+        })
+        .catch(error => {
+            console.log(error);
+            console.log("You suck!");
+        });
 }
 
 getFlights(baseURL, query);
