@@ -2,7 +2,7 @@
 // Uses a a map data structure to store the optional parameters and their values
 // Creates response.json file to store the response from the API which will then be displayed to the user
 
-//TODO: Make request twice for return flight!
+// TODO: Make request twice for return flight!
 
 // Imports
 const axios = require('axios');
@@ -12,7 +12,6 @@ const jotform = require('./data/jotform.json');
 
 //Global Variables
 searchResponse = null;
-var baseURL =  "https://api.tequila.kiwi.com/v2/search?";
 
 var airportCodes = {
     'New York': 'JFK',
@@ -35,15 +34,15 @@ var airportCodes = {
 //Link to full documenation of param queries: https://tequila.kiwi.com/portal/docs/tequila_api/search_api
 
 var flight = {
-    'fly_from': airportCodes[jotform["51"]["answer"]], 
+    'fly_from': airportCodes[jotform["34"]["answer"]], 
     'fly_to': 'JFK',   // TODO: set to OpenAI destination response
-    'date_from': jotform["53"]["answer"]["day"]+ '/' + jotform["53"]["answer"]["month"]+ '/' + jotform["53"]["answer"]["year"], // start search date 
-    'date_to': jotform["53"]["answer"]["day"]+ '/' + jotform["53"]["answer"]["month"]+ '/' + jotform["53"]["answer"]["year"], // search date max
-    'return_from' : jotform["54"]["answer"]["day"]+ '/' + jotform["54"]["answer"]["month"]+ '/' + jotform["54"]["answer"]["year"],
-    'return_to' : jotform["54"]["answer"]["day"]+ '/' + jotform["54"]["answer"]["month"]+ '/' + jotform["54"]["answer"]["year"],
+    'date_from': jotform["35"]["prettyFormat"], // start search date 
+    'date_to': jotform["35"]["prettyFormat"], // search date max
+    'return_from' : jotform["36"]["prettyFormat"],
+    'return_to' : jotform["36"]["prettyFormat"],
     'curr': 'USD', // currency
-    'price_to': 0.45 * parseInt(jotform['56']['answer']), // max price - TODO: what percent of budget goes to price? Does AI decide this? Default is 45% (it's recommended 30%).
-    'sort': 'quality', //TODO: display top ten options to user and have them pick
+    'price_to': 0.45 * parseInt(jotform['37']['answer']), // max price - TODO: what percent of budget goes to price? Does AI decide this? Default is 45% (it's recommended 30%).
+    'sort': 'quality', // TODO: display top ten options to user and have them pick
     'limit': 10,
     'flight_type': 'round',
     'nights_in_dst_from': null,
@@ -105,4 +104,4 @@ function getFlights(query, save) {
         });
 }
 
-getFlights(flight, 'data/flights.json');
+getFlights(flight, 'data/flight.json');
