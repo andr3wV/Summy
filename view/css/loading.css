@@ -1,66 +1,109 @@
-#loader {
-    /* Uncomment this to make it run! */
-    /*
-       animation: loader 5s linear infinite; 
-    */
-    
-    position: absolute;
-    top: calc(50% - 20px);
-    left: calc(50% - 20px);
+body {
+  background-color: #fff;
+
+  
+  font-family: 'Roboto', sans-serif;
+}
+
+.loader {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  max-width: 35rem;
+  height: 30rem;
+  margin: 0 auto;
+}
+
+.wait {
+  margin: 5rem 0;
+}
+.iata_code {
+    font-size: 6rem;
+    opacity:0.3;
+  top: 52%;
+  position: absolute;
+  color: #0099cc;
   }
-  @keyframes loader {
-    0% { left: -100px }
-    100% { left: 110%; }
+.departure_city {
+  left: 0;
+}
+
+.arrival_city {
+  right: 1.5rem;
+}
+
+.plane {
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.plane-img {
+  -webkit-animation: spin 2.5s linear infinite;
+  -moz-animation: spin 2.5s linear infinite;
+  animation: spin 2.5s linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
   }
-  #box {
-    width: 50px;
-    height: 50px;
-    background: #fff;
-    animation: animate .5s linear infinite;
-    position: absolute;
-    top: 0;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+.earth-wrapper {
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 2.7rem;
+}
+
+.earth {
+  width: 160px;
+  height: 160px;
+  background: url("https://zupimages.net/up/19/34/6vlb.gif");
+  border-radius: 100%;
+  background-size: 340px;
+  animation: earthAnim 12s infinite linear;
+  margin: 0 auto;
+  border: 1px solid #CDD1D3;
+}
+
+@keyframes earthAnim {
+  0% {background-position-x: 0;}
+  100% {background-position-x: -340px;}
+}
+
+@media screen and (max-width: 420px) {
+  .departure_city {
     left: 0;
-    border-radius: 3px;
-  }
-  @keyframes animate {
-    17% { border-bottom-right-radius: 3px; }
-    25% { transform: translateY(9px) rotate(22.5deg); }
-    50% {
-      transform: translateY(18px) scale(1,.9) rotate(45deg) ;
-      border-bottom-right-radius: 40px;
-    }
-    75% { transform: translateY(9px) rotate(67.5deg); }
-    100% { transform: translateY(0) rotate(90deg); }
-  } 
-  #shadow { 
-    width: 50px;
-    height: 5px;
-    background: #000;
-    opacity: 0.1;
+    right: 0;
+    top: 30%;
     position: absolute;
-    top: 59px;
-    left: 0;
-    border-radius: 50%;
-    animation: shadow .5s linear infinite;
+    margin: 0 auto;
   }
-  @keyframes shadow {
-    50% {
-      transform: scale(1.2,1);
-    }
+  
+  .arrival_city {
+    left: 0;
+    right: 0;
+    top: 93%;
+    position: absolute;
+    margin: 0 auto;
   }
   
   
-  body {
-    background: #6997DB; 
-    overflow: hidden;
-  }
-  h4 {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    margin: 0;
-    font-weight: 200;
-    opacity: .5;
-      font-family: sans-serif;
-    color: #fff;
-  }
+}
