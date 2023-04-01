@@ -9,9 +9,13 @@ const axios = require('axios');
 require('dotenv').config();
 const fs = require('fs');
 const jotform = require('./data/jotform.json'); 
+const itinerary = require('./data/itinerary.json');
+const countryCode = require('country-code');
+
 
 //Global Variables
 searchResponse = null;
+destination = countryCode.find({name: itinerary.country})
 
 var airportCodes = {
     'New York': 'JFK',
@@ -35,7 +39,7 @@ var airportCodes = {
 
 var flight = {
     'fly_from': airportCodes[jotform["34"]["answer"]], 
-    'fly_to': 'JFK',   // TODO: set to OpenAI destination response
+    'fly_to': destination.alpha2,
     'date_from': jotform["35"]["prettyFormat"], // start search date 
     'date_to': jotform["35"]["prettyFormat"], // search date max
     'return_from' : jotform["36"]["prettyFormat"],
@@ -104,4 +108,4 @@ function getFlights(query, save) {
         });
 }
 
-getFlights(flight, 'data/flight.json');
+getFlights(flight, './data/flight.json');
