@@ -2,6 +2,7 @@ import os
 import openai
 import json
 from dotenv import load_dotenv
+import requests
 
 load_dotenv() # Load environment variables from .env file
 openai.api_key = os.getenv('OPEN_AI_KEY')
@@ -30,8 +31,10 @@ prompt = f"Your client is {query['first']}. {query['first']} is a {query['gender
 prompt2 = "Create an itinerary!"
 messages = [
     	{"role": "system", "content": system_intel}, 
-    	{"role": "user", "content": prompt}]
+    	{"role": "user", "content": prompt}
+    ]
 
+# Get country name
 response = openai.ChatCompletion.create(
 	model="gpt-4",
 	max_tokens= 2048,
@@ -43,6 +46,7 @@ country = response['choices'][0]['message']['content']
 messages.append({"role": "assistant", "content": country})
 messages.append({"role": "user", "content": prompt2})
 
+# Get itinerary
 response = openai.ChatCompletion.create(
 	model="gpt-4",
 	max_tokens= 2048,
@@ -51,7 +55,39 @@ response = openai.ChatCompletion.create(
     )
 itinerary = response['choices'][0]['message']['content']
 
-result ={"country": country, "itinerary": itinerary}
+# Get country description
+system_intel = "You are an experienced travel agent and who gets very excited when people go to new places. In a few paragraphs, get the user excited about where they are going and explain why that country is amazing! Don't write a concluding paragraph where you restate what was already said."
+prompt = country
+messages = [
+    	{"role": "system", "content": system_intel}, 
+    	{"role": "user", "content": prompt}
+    ]
+
+response = openai.ChatCompletion.create(
+	model="gpt-4",
+	max_tokens= 2048,
+	temperature=1,
+	messages=messages
+    )
+description = response['choices'][0]['message']['content']
+
+
+
+# Get Photo URLs from unsplash
+url = f"https://api.unsplash.com/search/photos?query={country}&client_id={os.getenv('UNSPLASH_KEY')}"
+response = requests.get(url)
+
+photo1 = response.results[0].urls.regular
+photo2 = response.results[1].urls.regular
+photo3 = response.results[2].urls.regular
+photo4 = response.results[3].urls.regular
+
+result ={
+    "country": country, 
+    "description": description,
+    "itinerary": itinerary,
+    "photos": [photo1, photo2, photo3, photo4]
+}
 
 # Write to itinerary.json
 with open('data/itinerary.json', 'w') as file:
