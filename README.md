@@ -1,5 +1,6 @@
 # Wander: For the Modern Day Explorer
 An online travel agency (OTA) website that books spontaneous international trips for users with the goal of pushing people to explore the world and seek discomfort!  
+
 ![Homepage](https://imgur.com/IxLvPg5.png)
 
 ## The Facts
