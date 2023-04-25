@@ -39,44 +39,15 @@
         </div>
     </nav>
 
-    <!--  Typewriter Text  -->
+    <!-- Background Video  -->
 
     <header>
-        <div class="container">
-            <div class="header-info-par">
-                <h1 class="typewrite" data-period="2000"
-                    data-type='["Wander the world.", "For the Modern Day Explorer","Adventure Awaits, go find it."]'>
-                </h1>
-             
-            </div>
-            <div class="video">
-                <video id="video" autoplay loop muted>
-                    <source src="travel_compressed.mp4" type="video/mp4" />
-                </video>
-            </div>
+        <div class="video">
+            <video id="video" autoplay loop muted>
+                <source src="travel_compressed.mp4" type="video/mp4" />
+            </video>
         </div>
     </header>
-
-    <!--  Search Container  -->
-
-    <div class="search-container">
-        <div class="search-box">
-          <input type="text" placeholder="  Enter Origin City" id="search-box">
-          <i class="fa fa-search"></i>
-        </div>
-      </div>
-    <script>
-        const searchBox = document.getElementById('search-box');
-        searchBox.addEventListener('keypress', function(event) {
-          if (event.keyCode === 13) {
-            window.location.href = "view/jotform/Wander.html";
-          }
-          
-        });
-    </script>
-      
-    <script src="view/js/jquery-3.1.1.min.js"></script>
-    <script src="view/js/extrenaljq.js"></script>
 </body>
 
 </html>
