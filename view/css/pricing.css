@@ -1,0 +1,74 @@
+body {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.price-container {
+    width: 100%;
+}
+
+.pricing-wrapper {
+    padding-top: 12%; /* Adjust this value to set the desired distance from the navbar */
+    text-align: center;
+}
+
+.pricing-columns {
+    display: inline-flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.pricing-column {
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    height: 70vh;
+    background-color: #ffffff; /* Add this line to set the column background */
+    color: #000; /* Add this line to set the text color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add this line to add a subtle shadow */
+}
+
+.free {
+    background-color: #ffffff;
+}
+
+.premium {
+    background-color: #ffffff;
+}
+
+h3 {
+    font-size: 32px;
+    font-weight: bold; 
+    margin-bottom: 20px; 
+}
+
+.benefits {
+    text-align: left;
+    padding-left: 20px; 
+}
+
+.benefits li {
+    margin-bottom: 10px;
+}
+
+.select-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px; /* Add this line to adjust the font size */
+    margin: 0 auto; /* Add this line to center the button */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add this line to add a subtle shadow */
+}
+
+.select-button:hover {
+    background-color: #fff;
+    color: #4CAF50;
+}
