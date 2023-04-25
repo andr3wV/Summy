@@ -118,18 +118,3 @@ video#video{
 .menu-par{
     padding: 30px 0px;
 }
-.header-info-par a:hover:after{
-    width: 100%;
-}
-.header-info-par h1{
-    font-size: 45px;
-    text-transform: uppercase;
-    padding: 20px 0px;
-    letter-spacing: 4px;
-}
-.header-info-par p{
-    line-height: 30px;
-    font-size: 15px;
-    width: 80%;
-    margin: auto;
-}

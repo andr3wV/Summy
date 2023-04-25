@@ -10,8 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,500;0,600;1,300&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="view/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="view/css/style.css">
+    <link type="text/css" rel="stylesheet" href="view/css/textarea.css">
+    <script type="text/javascript" src="view/js/textarea.js" defer></script>
+    <script src="view/js/extrenaljq.js"></script>
+    <link type="text/css" rel="stylesheet" href="view/css/typewriter.css">
+    <script type="text/javascript" src="view/js/typewriter.js" defer></script>
+
 </head>
 <body>
     <nav>
@@ -39,15 +44,19 @@
         </div>
     </nav>
 
-    <!-- Background Video  -->
-
+    <!-- Text Area  -->
     <header>
-        <div class="video">
-            <video id="video" autoplay loop muted>
-                <source src="travel_compressed.mp4" type="video/mp4" />
-            </video>
+        <div class="textarea-container">
+            <div class="header-info-par">
+                <h1 class="typewrite" data-period="2000"
+                    data-type='["Summarize anything, save time.", "Books, essays, articles, papers..."]'>
+                </h1>
+            </div>
+            <textarea id="expandable-textarea" onclick="expandTextarea()"></textarea>
+            <button id="submit-button" class="hidden">Submit</button>
         </div>
     </header>
+    
 </body>
 
 </html>
