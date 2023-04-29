@@ -24,14 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
         submitButton.classList.add('visible');
         submitButton.classList.remove('hidden');
     });
-
-    textarea.addEventListener('blur', function () {
-        textarea.classList.remove('expanded');
-        submitButton.classList.remove('visible');
-        setTimeout(function () {
-            submitButton.classList.add('hidden');
-        }, 300);
-    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -53,13 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
         headerInfoPar.style.display = 'none';
     });
 
-    textarea.addEventListener('blur', function () {
-        textarea.classList.remove('expanded');
-        submitButton.classList.remove('visible');
-        setTimeout(function () {
-            submitButton.classList.add('hidden');
-        }, 300);
-        headerInfoPar.style.display = 'block';
+    submitButton.addEventListener('click', async function (event) {
+        event.preventDefault();
+        const text = textarea.value;
+        console.log('Submit button clicked!');
+        alert("HERE");
+        await summarizeText(text);
     });
 });
 
@@ -104,5 +95,17 @@ class TxtType {
         setTimeout(() => {
             this.tick();
         }, delta);
+    }
+}
+
+async function summarizeText(text) {
+    try {
+        alert("Trying to summarize text...\n" + text);
+        // const response = await axios.post('http://localhost:3001/controller/server', { text });
+        // const summary = response.data.summary;
+        alert(summary);
+    } catch (error) {
+        console.error('Error summarizing text:', error);
+        alert('Error summarizing text. Please try again.');
     }
 }
