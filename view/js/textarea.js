@@ -9,10 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     textarea.addEventListener('focus', function () {
         textarea.classList.add('expanded');
     });
-
-    textarea.addEventListener('blur', function () {
-        textarea.classList.remove('expanded');
-    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
