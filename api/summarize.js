@@ -1,5 +1,4 @@
 const axios = require('axios');
-const { response } = require('express');
 
 module.exports = async (req, res) => {
   if (req.method === 'POST') {
@@ -19,6 +18,7 @@ module.exports = async (req, res) => {
         { role: 'user', content: text },
       ],
     };
+
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
@@ -33,8 +33,11 @@ module.exports = async (req, res) => {
 
       res.status(200).json({ summary: response.data.choices[0].message.content });
     } catch (error) {
-        console.log(response.data.error);
-      res.status(500).json({ message: 'Error summarizing text. Please try again later.2' });
+      console.error('Error:', error.message);
+      if (error.response) {
+        console.error('Error details:', error.response.data);
+      }
+      res.status(500).json({ message: 'Error summarizing text. Please try again later.', error: error.message });
     }
   } else {
     res.setHeader('Allow', ['POST']);
