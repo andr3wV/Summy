@@ -101,16 +101,16 @@ class TxtType2 {
     }
 }
 
-async function summarizeText(text) {
+// async function summarizeText(text) {
 
-    if(!text) return 'No text provided.';
-    try {
-         const response = await axios.post('https://summy-five.vercel.app/summarize', { text });
-         return response.data.summary;
-    } catch (error) {
-        return 'Error summarizing text. Please try again later.';
-    }
-}
+//     if(!text) return 'No text provided.';
+//     try {
+//          const response = await axios.post('https://summy-five.vercel.app/summarize', { text });
+//          return response.data.summary;
+//     } catch (error) {
+//         return 'Error summarizing text. Please try again later.';
+//     }
+// }
 
 /* -- POST REQUEST IMPLEMENTATION -- */
 
@@ -140,3 +140,15 @@ async function summarizeText(text) {
 //         return 'Error summarizing text. Please try again later.';
 //     }
 // }
+
+async function summarizeText(text) {
+    if (!text) return 'No text provided.';
+  
+    try {
+      const response = await axios.post('/controller/server', { text });
+  
+      return response.data.summary;
+    } catch (error) {
+      return 'Error summarizing text. Please try again later.';
+    }
+  }
