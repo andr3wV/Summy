@@ -143,9 +143,8 @@ class TxtType2 {
 
 async function summarizeText(text) {
     if (!text) return 'No text provided.';
-  
     try {
-      const response = await axios.post('/controller/server', { text });
+      const response = await axios.post('../../api/summarize', { text });
   
       return response.data.summary;
     } catch (error) {
