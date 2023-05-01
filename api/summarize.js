@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     };
 
     try {
+        console.log("KEY -----------> " + process.env.OPENAI_API_KEY)
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         data,
@@ -33,7 +34,7 @@ module.exports = async (req, res) => {
 
       res.status(200).json({ summary: response.data.choices[0].message.content });
     } catch (error) {
-      res.status(500).json({ message: 'Error summarizing text. Please try again later.' });
+      res.status(500).json({ message: 'Error summarizing text. Please try again later.2' });
     }
   } else {
     res.setHeader('Allow', ['POST']);
