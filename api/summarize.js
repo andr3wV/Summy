@@ -10,13 +10,17 @@ module.exports = async (req, res) => {
     }
 
     const data = {
-      model: 'gpt-3.5-turbo',
-      messages: [
-        {
-          system: 'You are an AI that summarizes text. Summarize all of the following text',
-        },
-        { role: 'user', content: text },
-      ],
+        "model": "gpt-3.5-turbo",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are an AI that summarizes text. Summarize all of the following text"
+            },
+            {
+                "role": "user", 
+                "content": text
+            }
+        ]
     };
 
     const headers = {
