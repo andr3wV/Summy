@@ -101,12 +101,41 @@ class TxtType2 {
     }
 }
 
+// async function summarizeText(text) {
+
+//     if(!text) return 'No text provided.';
+//     try {
+//          const response = await axios.post('http://localhost:3001/summarize', { text });
+//          return response.data.summary;
+//     } catch (error) {
+//         return 'Error summarizing text. Please try again later.';
+//     }
+// }
+
+/* -- POST REQUEST IMPLEMENTATION -- */
+
 async function summarizeText(text) {
 
     if(!text) return 'No text provided.';
+    
+    const data = {
+        "model": "gpt-3.5-turbo",
+        "messages": [{"system": "You are an AI that summarizes text. Summarize all of the following text"}, {"role": "user", "content": text}],
+      };
+
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      };
+
     try {
-         const response = await axios.post('http://localhost:3001/summarize', { text });
-         return response.data.summary;
+        const response = await axios.post(
+            "https://api.openai.com/v1/chat/completions",
+            data,
+            { headers }
+          );
+
+          return response.data.choices[0].message.content;
     } catch (error) {
         return 'Error summarizing text. Please try again later.';
     }
