@@ -15,30 +15,3 @@
     margin: 0 auto;
     display: inline;
 }
-
-.typewrite > .wrap {
-    animation: typewriter 3.5s steps(40, end) infinite;
-}
-
-@keyframes typewriter {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-.wrap::after {
-    content: '|';
-    animation: blink 1s steps(1) infinite;
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
