@@ -105,7 +105,7 @@ async function summarizeText(text) {
 
     if(!text) return 'No text provided.';
     try {
-         const response = await axios.post('https://vercel.com/andr3wv/summy/HrbbyyC4fBicr5QXQ2EEj9wTPgBu/summarize', { text });
+         const response = await axios.post('https://summy-five.vercel.app/summarize', { text });
          return response.data.summary;
     } catch (error) {
         return 'Error summarizing text. Please try again later.';
