@@ -34,7 +34,6 @@ module.exports = async (req, res) => {
       res.status(200).json({ summary: response.data.choices[0].message.content });
     } catch (error) {
         console.log(response.data.error);
-        console.log(error.data.error);
       res.status(500).json({ message: 'Error summarizing text. Please try again later.2' });
     }
   } else {
