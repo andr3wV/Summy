@@ -18,14 +18,14 @@ module.exports = async (req, res) => {
         { role: 'user', content: text },
       ],
     };
-
+    console.log("KEY1 -----------> " + process.env.OPENAI_API_KEY);
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
     };
 
     try {
-        console.log("KEY -----------> " + process.env.OPENAI_API_KEY)
+      console.log("KEY2 -----------> " + process.env.OPENAI_API_KEY);
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         data,
