@@ -1,38 +1,40 @@
 const express = require('express');
-const cors = require('cors');
-const openai = require('openai');
+const cors = require('cors');   
 const dotenv = require('dotenv');
-
-dotenv.config();
-
-openai.apiKey = process.env.OPENAI_API_KEY;
-
+const {Configuration, OpenAIApi} = require('openai');
 const app = express();
+
+dotenv.config({ path: '../.env' }); //loads .env file from parent directory
 app.use(cors());
 app.use(express.json());
 
 app.post('/summarize', async (req, res) => {
     const text = req.body.text;
+    console.log('Server received text:', text);
+
+    const configuration = new Configuration({
+        apiKey: process.env.OPENAI_API_KEY
+    });
+
+    const openai = new OpenAIApi(configuration);
 
     const messages = [
         {
             role: 'system',
-            content: 'You are an AI that summarizes text. Summarize the following text:',
+            content: 'You are an AI that summarizes text. Summarize all of the following text:',
         },
-        { role: 'user', content: text },
+        { role: 'user', content: text || 'No text provided.' },
     ];
 
     try {
-        const completion =  await openai.createCompletion({
-            model: 'gpt-3.5-turbo',
+        const completion = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
             messages: messages,
-        });
-
-        //data.choices[0].message.content
-        const summary = completion.choices[0].message.content.trim();
+         });
+        const summary = completion.data.choices[0].message.content;
         res.json({ summary });
     } catch (error) {
-        console.error('Error summarizing text:', error);
+        console.error('Server error summarizing text:', error);
         res.status(500).json({ error: 'Error summarizing text. Please try again.' });
     }
 });

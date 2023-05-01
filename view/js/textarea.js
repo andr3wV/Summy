@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < elements.length; i++) {
         const period = elements[i].getAttribute('data-period');
         const text = JSON.parse(elements[i].getAttribute('data-type'));
-        new TxtType(elements[i], text, period);
+        new TxtType2(elements[i], text, period);
     }
 
     const textarea = document.getElementById('expandable-textarea');
@@ -45,12 +45,19 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         const text = textarea.value;
         console.log('Submit button clicked!');
-        alert("HERE");
-        await summarizeText(text);
+        submitButton.disabled = true;
+        submitButton.classList.add('disabled'); 
+        console.log('Submit Button Disabled');
+        setTimeout(() => {
+            submitButton.disabled = false; 
+            submitButton.classList.remove('disabled');
+            console.log('Submit Button Enabled');
+        }, 10000); 
+        textarea.value = await summarizeText(text);
     });
 });
 
-class TxtType {
+class TxtType2 {
     constructor(element, words, wait) {
         this.element = element;
         this.words = words;
@@ -95,13 +102,12 @@ class TxtType {
 }
 
 async function summarizeText(text) {
+
+    if(!text) return 'No text provided.';
     try {
-        alert("Trying to summarize text...\n" + text);
-        // const response = await axios.post('http://localhost:3001/controller/server', { text });
-        // const summary = response.data.summary;
-        alert(summary);
+         const response = await axios.post('http://localhost:3001/summarize', { text });
+         return response.data.summary;
     } catch (error) {
-        console.error('Error summarizing text:', error);
-        alert('Error summarizing text. Please try again.');
+        return 'Error summarizing text. Please try again later.';
     }
 }

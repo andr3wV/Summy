@@ -13,12 +13,12 @@
     <link type="text/css" rel="stylesheet" href="view/css/style.css">
     <link type="text/css" rel="stylesheet" href="view/css/textarea.css">
     <script type="text/javascript" src="view/js/textarea.js" defer></script>
-    <script src="view/js/extrenaljq.js"></script>
     <link type="text/css" rel="stylesheet" href="view/css/typewriter.css">
     <script type="text/javascript" src="view/js/typewriter.js" defer></script>
     <link type="text/css" rel="stylesheet" href="view/css/comet.css">
     <script type="text/javascript" src="view/js/comet.js" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/openai/umd/index.min.js"></script> -->
 </head>
 <body>
     <!-- Comet Background -->
@@ -54,7 +54,7 @@
         <div class="textarea-container">
             <div class="header-info-par">
                 <h1 class="typewrite" data-period="2000"
-                    data-type='["Summarize anything, summarize anywhere.", "Books, essays, articles, papers, and more."]'>
+                    data-type='["Summarize without character restrictions." , "Anywhere. Anytime." , "Books, essays, articles, papers, and more."]'>
                 </h1>
             </div>
             <textarea id="expandable-textarea" onclick="expandTextarea()" placeholder="Paste Here"></textarea>

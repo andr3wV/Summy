@@ -64,6 +64,12 @@ button#submit-button.visible {
     pointer-events: all;
 }
 
+button#submit-button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
 .hidden {
     display: none;
 }
