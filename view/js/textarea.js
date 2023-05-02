@@ -94,7 +94,7 @@ function expandTextarea() {
   
       // Send text to server for summarization
       try {
-        const response = await axios.post('../../api/summarize', { text });
+        const response = await axios.post('../../api/summarize', { text, timeout: 60000});
   
         textarea.value = response.data.summary;
       } catch (error) {
