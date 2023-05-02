@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports = async (req, res) => {
   var textArray = [];
   if (req.method === 'POST') {
-    const fullText = req.body.text;
+    var fullText = req.body.text;
     
     if (!fullText) {
       res.status(400).json({ message: 'No text provided.' });
