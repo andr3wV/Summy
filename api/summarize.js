@@ -12,8 +12,6 @@ module.exports = async (req, res) => {
     
     // Splice text into an object for OpenAI - every new line is a new index in an array
     fullText = fullText.split(/\n+/);
-    console.log('Text spliced into array: ', fullText);
-
     for(let i = 0; i < fullText.length; i++) {
       var text = fullText[i];
       console.log(i + " text: ", text);
@@ -44,6 +42,7 @@ module.exports = async (req, res) => {
           { headers }
         );
           textArray.push(response.data.choices[0].message.content);
+          console.log("textArray: ", textArray)
       } catch (error) {
         console.error('Error:', error.message);
         res.status(500).json({ message: 'Error summarizing text. Please try again later.', error: error.message });
