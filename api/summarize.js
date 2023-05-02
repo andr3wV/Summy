@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
         res.status(500).json({ message: 'Error summarizing text. Please try again later.', error: error.message });
       }
     }
-    res.status(200).json({ summary: textArray.join(' ') });
+    res.status(200).json({ summary: textArray.join('\n') });
   } else {
     res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
