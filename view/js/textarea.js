@@ -83,6 +83,7 @@ function expandTextarea() {
   
       if (!text) {
         textarea.value = 'Please enter some text.';
+        return;
       }  
 
       submitButton.disabled = true;
