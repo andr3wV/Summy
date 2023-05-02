@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     }
     
     // Splice text into an object for OpenAI - every new line is a new index in an array
-    fullText = fullText.split('\n');
+    fullText = fullText.split('\n+/');
     console.log('Text spliced into array: ', fullText);
     res.status(200).json({ summary: fullText });
     
