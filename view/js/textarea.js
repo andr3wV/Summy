@@ -99,6 +99,7 @@ function expandTextarea() {
         textarea.value = response.data.summary;
       } catch (error) {
         console.error(error);
+        textarea.value = error;
       }
   
       submitButton.disabled = false;

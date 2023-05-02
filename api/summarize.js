@@ -4,8 +4,6 @@ module.exports = async (req, res) => {
   var textArray = [];
   if (req.method === 'POST') {
     const fullText = req.body.text;
-    //find the typeof fullText
-    console.log("typeof fullText: ", typeof fullText);
     
     if (!fullText) {
       res.status(400).json({ message: 'No text provided.' });
@@ -15,6 +13,7 @@ module.exports = async (req, res) => {
     // Splice text into an object for OpenAI - every new line is a new index in an array
     fullText = fullText.split('\n');
     console.log('Text spliced into array: ', fullText);
+    res.status(200).json({ summary: fullText });
     
     for(let i = 0; i < fullText.length; i++) {
       var text = fullText[i];
@@ -46,7 +45,7 @@ module.exports = async (req, res) => {
           { headers }
         );
           textArray.push(response.data.choices[0].message.content);
-        res.status(200).json({ summary: response.data.choices[0].message.content });
+        // res.status(200).json({ summary: response.data.choices[0].message.content });
       } catch (error) {
         console.error('Error:', error.message);
         if (error.response) {
