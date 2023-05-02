@@ -82,20 +82,16 @@ function expandTextarea() {
       const text = textarea.value.trim();
   
       if (!text) {
-        return;
-      }
-  
-      console.log('Submit button clicked!');
-  
+        textarea.value = 'Please enter some text.';
+      }  
+
       submitButton.disabled = true;
       submitButton.classList.add('disabled');
-  
-      console.log('Submit Button Disabled');
   
       // Send text to server for summarization
       try {
         const response = await axios.post('../../api/summarize', { text, timeout: 60000});
-  
+        console.log('Response received from server!');
         textarea.value = response.data.summary;
       } catch (error) {
         console.error(error);
@@ -104,8 +100,6 @@ function expandTextarea() {
   
       submitButton.disabled = false;
       submitButton.classList.remove('disabled');
-  
-      console.log('Submit Button Enabled');
     });
   
     // Initialize typewrite effect

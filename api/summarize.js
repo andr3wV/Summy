@@ -14,8 +14,6 @@ module.exports = async (req, res) => {
     fullText = fullText.split(/\n+/);
     for(let i = 0; i < fullText.length; i++) {
       var text = fullText[i];
-      console.log(i + " text: ", text);
-
       const data = {
           "model": "gpt-3.5-turbo",
           "messages": [
@@ -42,7 +40,6 @@ module.exports = async (req, res) => {
           { headers }
         );
           textArray.push(response.data.choices[0].message.content);
-          console.log("textArray: ", textArray)
       } catch (error) {
         console.error('Error:', error.message);
         res.status(500).json({ message: 'Error summarizing text. Please try again later.', error: error.message });
