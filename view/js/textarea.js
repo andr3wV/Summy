@@ -92,6 +92,7 @@ function expandTextarea() {
   
       console.log('Submit Button Disabled');
   
+      // Send text to server for summarization
       try {
         const response = await axios.post('../../api/summarize', { text });
   
