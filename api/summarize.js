@@ -4,6 +4,7 @@ module.exports = async (req, res) => {
   var textArray = [];
   if (req.method === 'POST') {
     const fullText = req.body.text;
+    console.log('Full text: ', fullText);
 
     if (!text) {
       res.status(400).json({ message: 'No text provided.' });
@@ -15,7 +16,7 @@ module.exports = async (req, res) => {
     console.log('Text spliced into array: ', fullText);
     
     for(let i = 0; i < fullText.length; i++) {
-      const text = fullText[i];
+      var text = fullText[i];
       console.log(i + " text: ", text);
 
       const data = {
