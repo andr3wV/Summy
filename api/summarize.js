@@ -4,7 +4,6 @@ module.exports = async (req, res) => {
   var textArray = [];
   if (req.method === 'POST') {
     const fullText = req.body.text;
-    console.log('Full text: ', fullText);
 
     if (!text) {
       res.status(400).json({ message: 'No text provided.' });
