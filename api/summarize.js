@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
         const response = await axios.post(
           'https://api.openai.com/v1/chat/completions',
           data,
-          { headers }
+          { headers, timeout: 60000}
         );
           textArray.push(response.data.choices[0].message.content);
       } catch (error) {
