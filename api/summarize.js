@@ -4,8 +4,10 @@ module.exports = async (req, res) => {
   var textArray = [];
   if (req.method === 'POST') {
     const fullText = req.body.text;
-
-    if (!text) {
+    //find the typeof fullText
+    console.log("typeof fullText: ", typeof fullText);
+    
+    if (!fullText) {
       res.status(400).json({ message: 'No text provided.' });
       return;
     }
