@@ -1,4 +1,5 @@
 const axios = require('axios');
+require('dotenv').config();
 
 module.exports = async (req, res) => {
   var textArray = [];
@@ -19,7 +20,7 @@ module.exports = async (req, res) => {
         "messages": [
           {
             "role": "system",
-            "content": "You are an AI that summarizes text. Summarize all of the following text"
+            "content": "You are an AI that summarizes text. Summarize all of the following text. Do not provide a conclusion at the end (do not be repetitive in the information you give). Keep your summary concise, but do not leave anything out that is important."
           },
           {
             "role": "user",
