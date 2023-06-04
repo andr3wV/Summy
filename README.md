@@ -20,8 +20,8 @@ Most text summarization sites have character or token caps making it difficult t
 
 - Implement better system prompt - creative, factual, concise, long, etc
 
-- Utilize ChatCompletion by appending paragraphs
+- <del>Utilize ChatCompletion by appending paragraphs<del>
 
-- Split text by tokens not paragraphs
+- <del>Split text by tokens not paragraphs<del>
 
 - Implement login feature
