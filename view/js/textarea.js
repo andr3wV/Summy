@@ -1,114 +1,71 @@
-// Function to expand textarea
-function expandTextarea() {
-    const textarea = document.getElementById('expandable-textarea');
-    textarea.classList.add('expanded');
-  }
-  
-  // Expand textarea and show submit button on focus
-  document.addEventListener('DOMContentLoaded', function () {
-    const textarea = document.getElementById('expandable-textarea');
-    const submitButton = document.getElementById('submit-button');
-  
-    textarea.addEventListener('focus', function () {
-      textarea.classList.add('expanded');
-      submitButton.classList.add('visible');
-      submitButton.classList.remove('hidden');
-    });
-  });
-  
-  // Typewrite effect
-  class TxtType2 {
-    constructor(element, words, wait = 2000) {
-      this.element = element;
-      this.words = words;
-      this.loopNum = 0;
-      this.wait = wait;
-      this.txt = '';
-      this.isDeleting = false;
-      this.tick();
-    }
-  
-    tick() {
-      const i = this.loopNum % this.words.length;
-      const fullTxt = this.words[i];
-  
-      if (this.isDeleting) {
-        this.txt = fullTxt.substring(0, this.txt.length - 1);
-      } else {
-        this.txt = fullTxt.substring(0, this.txt.length + 1);
-      }
-  
-      this.element.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-  
-      let delta = 200 - Math.random() * 100;
-  
-      if (this.isDeleting) {
-        delta /= 2;
-      }
-  
-      if (!this.isDeleting && this.txt === fullTxt) {
-        delta = this.wait;
-        this.isDeleting = true;
-      } else if (this.isDeleting && this.txt === '') {
-        this.isDeleting = false;
-        this.loopNum++;
-        delta = 500;
-      }
-  
-      setTimeout(() => {
-        this.tick();
-      }, delta);
-    }
-  }
-  
-  // Initialize typewrite effect and handle form submission
-  document.addEventListener('DOMContentLoaded', function () {
-    const textarea = document.getElementById('expandable-textarea');
-    const submitButton = document.getElementById('submit-button');
-    const headerInfoPar = document.querySelector('.header-info-par');
-  
-    // Hide header information paragraph and show submit button on focus
-    textarea.addEventListener('focus', function () {
-      textarea.classList.add('expanded');
-      submitButton.classList.add('visible');
-      submitButton.classList.remove('hidden');
-      headerInfoPar.style.display = 'none';
-    });
-  
-    // Handle form submission
-    submitButton.addEventListener('click', async function (event) {
-      event.preventDefault();
-  
-      const text = textarea.value.trim();
-  
-      if (!text) {
-        textarea.value = 'Please enter some text.';
-        return;
-      }  
+// Expansion of textarea
+document.addEventListener('DOMContentLoaded', function () {
+  const textarea = document.getElementById('expandable-textarea');
+  const submitButton = document.getElementById('submit-button');
+  const headerInfoPar = document.querySelector('.header-info-par');
 
-      submitButton.disabled = true;
-      submitButton.classList.add('disabled');
-  
-      // Send text to server for summarization
-      try {
-        const response = await axios.post('../../api/summarize', { text, timeout: 60000});
-        console.log('Response received from server!');
-        textarea.value = response.data.summary;
-      } catch (error) {
-        console.error(error);
-        textarea.value = error;
-      }
-  
-      submitButton.disabled = false;
-      submitButton.classList.remove('disabled');
-    });
-  
-    // Initialize typewrite effect
-    const elements = document.getElementsByClassName('typewrite');
-    for (let i = 0; i < elements.length; i++) {
-      const period = elements[i].getAttribute('data-period');
-      const text = JSON.parse(elements[i].getAttribute('data-type'));
-      new TxtType2(elements[i], text, period);
-    }
+  textarea.addEventListener('focus', function () {
+    textarea.classList.add('expanded');
+    submitButton.classList.add('visible');
   });
+
+  // Hide header information paragraph and show submit button on focus
+  textarea.addEventListener('focus', function () {
+    textarea.classList.add('expanded');
+    submitButton.classList.add('visible');
+    submitButton.classList.remove('hidden');
+    headerInfoPar.style.display = 'none';
+  });
+});
+
+//Handle form submission
+document.addEventListener('DOMContentLoaded', function () {
+  const textarea = document.getElementById('expandable-textarea');
+  const submitButton = document.getElementById('submit-button');
+
+  /*
+      EXTREMELY IMPORTANT! - Handles form submission
+  */
+  submitButton.addEventListener('click', async function (event) {
+    event.preventDefault();
+
+    const text = textarea.value.trim();
+
+    if (!text) {
+      textarea.value = 'Please enter some text.';
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.classList.add('disabled');
+
+    // Send text chunk to the Express.js server for summarization
+    try {
+
+      var encodeResponse = await axios.post('http://localhost:3001/api/encode', { text });
+
+      var summary = '';
+      // for await (let snippet of encodeResponse.data.summary) {
+
+      //   var openAIResponse = await axios.post('http://localhost:3001/api/summarize', { text: snippet});
+      //   summary = summary + openAIResponse.data.summary;
+      // }
+
+      for(var i = 0; i < encodeResponse.data.summary.length; i++) {
+        var openAIResponse = await axios.post('http://localhost:3001/api/summarize', { text: encodeResponse.data.summary[i].replace(/\n/g, ' ') });
+        summary = summary + openAIResponse.data.summary;
+        summary += '\n\n';
+      }
+
+      textarea.value = summary;
+      console.log('Response received from server!');
+
+    } catch (error) {
+      console.error(error);
+      textarea.value = error.message;
+    }
+    submitButton.disabled = false;
+    submitButton.classList.remove('disabled');
+  });
+});
   
