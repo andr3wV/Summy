@@ -14,7 +14,8 @@ Most text summarization sites have character or token caps making it difficult t
 
 - Node.js (backend)
 
-  
+- AWS Lambda
+ 
 
 ## Future Work
 
