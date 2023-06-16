@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   const tokens = await tokenizer.encode(fullText);
 
   // Decodes tokens to text in chunks of 500 tokens
-  const chunks = [];
+  var chunks = [];
    
   for (let i =0; i < tokens.length; i+=500) {
     const chunk = tokens.slice(i, i + 500);

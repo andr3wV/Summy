@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Send text chunk to the Express.js server for summarization
     try {
 
-      var encodeResponse = await axios.post('http://localhost:3001/api/encode', { text });
+      var encodeResponse = await axios.post('https://zaga2v67el.execute-api.us-east-1.amazonaws.com/Prod/api/encode', { text });
 
       var summary = '';
       // for await (let snippet of encodeResponse.data.summary) {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // }
 
       for(var i = 0; i < encodeResponse.data.summary.length; i++) {
-        var openAIResponse = await axios.post('http://localhost:3001/api/summarize', { text: encodeResponse.data.summary[i].replace(/\n/g, ' ') });
+        var openAIResponse = await axios.post('https://zaga2v67el.execute-api.us-east-1.amazonaws.com/Prod/api/summarize', { text: encodeResponse.data.summary[i].replace(/\n/g, ' ') });
         summary = summary + openAIResponse.data.summary;
         summary += '\n\n';
       }
